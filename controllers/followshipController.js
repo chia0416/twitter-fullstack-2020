@@ -1,37 +1,35 @@
 const db = require("../models")
 const { User, Tweet, Followship } = db;
 const moment = require("moment")
-
+const { getTopUser, getTestUser } = require("util.service")
 //for test only
-const helpers = require("../_helpers.js")
-const getTestUser = function (req) {
-  if (process.env.NODE_ENV === "test") {
-    return helpers.getUser(req);
-  } else { return req.user }}
 
 const listAttributes = [
   "id", "name", "account", "introduction", "updatedAt", "avatar",
 ];
 
 const followshipController = {
-  getFollowers: (req, res) => {
+  getFollowers: async (req, res) => {
     const user = getTestUser(req)
-    User.findByPk(req.params.id, {
+    try{
+      const profile = await User.findByPk(req.params.id, {
       attributes: ["id", "name"],
       include: [
         { model: Tweet, attributes: ["id"] },
         { model: User, as: "Followers", attributes: listAttributes,
           include: { model: User, as: "Followers", attributes: ["id"] }}]})
-      .then((profile) => {
+      const topUsers = await getTopUser()
         profile = profile.toJSON()
         profile.tweetCount = profile.Tweets.length
         profile.Followers.forEach((follower) => {
           const arr = follower.Followers.map((el) => el.id);
           if (arr.indexOf(profile.id) > -1) follower.isFollowed = true
           else follower.isFollowed = false
-          follower.updatedAtFormated = moment(follower.updatedAt).fromNow()})
-        return res.render("followship", { tagA: true, profile, followers: profile.Followers });})
-      .catch((error) => res.status(400).json(error))
+          follower.updatedAtFormated = moment(follower.updatedAt).fromNow()
+        })
+      return res.render(
+        "followship", { tagA: true, profile, followers: profile.Followers, users: topUsers });
+        }catch(error){ res.status(400).json(error)}
   },
 
   getFollowings: (req, res) => {

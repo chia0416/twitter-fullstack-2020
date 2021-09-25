@@ -17,7 +17,13 @@ const app = express();
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+// 設定在測試環境下使用 helpers.getUser(req) 作為 req.user
+if (process.env.NODE_ENV === "test") {
+  app.use((req, res, next) => {
+    req.user = helpers.getUser(req);
+    next();
+  });
+}
 // use helpers.ensureAuthenticated(req) to replace req.isAuthenticated()
 
 app.engine(
@@ -38,10 +44,6 @@ app.use(express.static("public"));
 app.use(session({ secret: "secret", resave: false, saveUninitialized: false }));
 app.use("/upload", express.static(__dirname + "/upload"));
 usePassport(app);
-app.use((req, res, next) => {
-  res.locals.user = helpers.getUser(req);
-  next();
-});
 
 app.use(routes);
 app.listen(port, () =>

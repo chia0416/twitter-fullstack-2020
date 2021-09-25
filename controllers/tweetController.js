@@ -14,10 +14,9 @@ const getTestUser = function (req) {
   }
 };
 
-const listAttributes = ["id", "name", "account", "avatar"];
+const listAttributes = ["id", "name", "account", "avatar", "updatedAt"];
 const tweetController = {
   getPosts: async (req, res) => {
-    const user = getTestUser(req);
     try {
       const Profile = await User.findByPk(req.user.id, {
         attributes: ["id", "avatar"],
@@ -74,7 +73,6 @@ const tweetController = {
   },
 
   getPost: async (req, res) => {
-    const user = getTestUser(req);
     try {
       let tweet = await Tweet.findByPk(req.params.id, {
         include: [
@@ -111,11 +109,10 @@ const tweetController = {
       //add isLike property dynamically
       tweet = tweet.toJSON();
       tweet.LikedUsers.forEach((likedUser) => {
-        if (Number(likedUser.id) === Number(user.id)) tweet.isLiked = true;
+        if (Number(likedUser.id) === Number(req.user.id)) tweet.isLiked = true;
       });
       // return res.json({ tweet, ReplyCount, LikedCount, user: TopUsers,})
       return res.render("post", {
-        profile: user,
         tweet,
         ReplyCount,
         LikedCount,

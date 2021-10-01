@@ -198,7 +198,7 @@ textarea.modal-input {
 .upper-right > * {
   flex: 0 0 auto;
 }
-.icon-btn {
+.profilepage-card2 .icon-btn {
   position: relative;
   border: 1px solid #ff6600;
   background: #fff;
@@ -208,12 +208,12 @@ textarea.modal-input {
   color: #ff6600;
   margin-right: 10px;
 }
-.icon-btn.fill {
+.profilepage-card2 .icon-btn.fill {
   border: 1px solid #fff;
   background: #ff6600;
   color: #fff;
 }
-.icon-btn svg {
+.profilepage-card2 .icon-btn svg {
   position: absolute;
   top: 50%;
   left: 50%;

@@ -87,7 +87,8 @@
 .m75 {
   margin-top: 75px;
 }
-.modal-input {
+.modal-input,
+.signin-input {
   width: 570px;
   margin-left: 0px;
   margin-right: 0px;
@@ -95,8 +96,13 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 2px solid #657786;
+  border-bottom: 3px solid #657786;
   border-radius: 4px 4px 0 0;
+  color: #222;
+  font-weight: 700;
+}
+.signin-input {
+  width: 100%;
 }
 .modal-content .profile-container .profile-textarea-container {
   margin-top: 7px;
@@ -108,7 +114,7 @@
   left: 15px;
   font-size: 15px;
   transform: translateY(-15px);
-  font: 500 15px "Noto Sans TC";
+  font: 700 15px "Noto Sans TC";
   color: #657786;
 }
 .form-floating {

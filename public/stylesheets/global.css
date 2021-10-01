@@ -15,12 +15,14 @@
 * {
   font-family: Noto Sans TC;
 }
-body,
+.body-card,
 html {
   height: 100vh;
   padding: 0;
   margin: 0;
+  width: 100vw;
 }
+
 a {
   text-decoration: none;
   color: #1c1c1c;
@@ -96,8 +98,19 @@ textarea.modal-input {
   position: absolute;
   top: 5vh;
   left: 50%;
+  min-width: 400px;
   transform: translateX(-50%);
   z-index: 50;
+}
+.flash-message > .alert {
+  border-radius: 2em;
+  border-width: 2px;
+  box-shadow: 0px 0px 20px (255, 255, 255, 0.2), 0px 0px 8px (200, 200, 200, 0.4);
+  text-align: center;
+}
+.flash-message > .alert > .btn-close {
+  opacity: 1;
+  right: 0.5em;
 }
 .validate-text {
   position: absolute;
@@ -165,6 +178,11 @@ textarea.modal-input {
   font-size: 15px;
   line-height: 15px;
   color: #ffffff;
+  transition: 0.3s both;
+}
+.btn-orange:hover {
+  color: #fff;
+  box-shadow: 0 0 10px #ff9b58, inset 0 0 8px rgb(255, 210, 180, 0.3);
 }
 .btn-orange.btn-short,
 .btn-outline-orange.btn-short {
@@ -402,7 +420,7 @@ in many similar page layouts.*/
   color: #ff6600;
 }
 .nav-item .nav-link:hover::after {
-  width: 100px;
+  width: 130px;
 }
 li.nav-item:hover {
   box-shadow: 5px -5px 10px #e6e6e669, -5px -5px 10px #ececec69, 0 5px 10px #fff;

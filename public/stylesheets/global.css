@@ -234,6 +234,7 @@ in many similar page layouts.
   width: 600px;
   max-width: 600px;
   background: #e6ecf0;
+  overflow: hidden;
   padding: 0;
 }
 .profile-container > * {
@@ -312,7 +313,7 @@ in many similar page layouts.*/
   flex: 1;
   background-color: #fff;
   position: relative;
-  border: 1px solid #e6ecf0;
+  border-top: 1px solid #e6ecf0;
 }
 
 .post-card1 {
@@ -424,4 +425,63 @@ in many similar page layouts.*/
 }
 li.nav-item:hover {
   box-shadow: 5px -5px 10px #e6e6e669, -5px -5px 10px #ececec69, 0 5px 10px #fff;
+}
+/*toast*/
+.toast .fa-check {
+  flex: 0 0;
+  color: #82c43c;
+  font-size: 1em;
+  position: relative;
+}
+.toast h3 {
+  flex: 1;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  color: #222;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+.toast .fa-check:after {
+  content: "";
+  height: 2em;
+  width: 2em;
+  border-radius: 1em;
+  background-color: rgba(0, 255, 0, 0.2);
+  position: absolute;
+  top: -0.5em;
+  left: -0.5em;
+}
+.toast {
+  position: absolute;
+  background-color: #fff;
+  padding: 1.2em 1.5em;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #eee;
+  height: 3.4em;
+  width: 200px;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  animation: top-fade both 3s;
+  right: 100px;
+  z-index: 1200;
+}
+@keyframes top-fade {
+  0% {
+    top: 40vh;
+    opacity: 0;
+  }
+  30% {
+    top: 5vh;
+    opacity: 1;
+  }
+  90% {
+    top: 5vh;
+    opacity: 1;
+  }
+  100% {
+    top: -10vh;
+    opacity: 0.7;
+  }
 }

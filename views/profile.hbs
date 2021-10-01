@@ -25,7 +25,8 @@
     <div class="col flex-direction-column">
       <!--start::list of 推文-->
       {{#if isPost}}
-      {{#each tweets}}      
+      {{#each tweets}}
+      {{>toast}}      
       <div class="post">
         <div class="post-card1">
           <div class="avatar profile-avatar">

@@ -12,6 +12,7 @@
 .profilepage-messageboard {
   background-color: #fff;
   position: relative;
+  border-top: none;
 }
 .profilepage-banner {
   position: relative;

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/stylesheets/center-profile.css" />
     <link rel="stylesheet" href="/stylesheets/center-admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/brands.min.js"></script>
   </head>
   <header></header>
@@ -22,16 +23,27 @@
       {{{body}}}
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/perfect-scrollbar.js"></script>
     <script>
-      const textNumRestrained = document.querySelector('.replytextarea')
-      (function () { 'use strict' // Fetch all the forms we want to apply custom Bootstrap validation styles to var forms =
-      document.querySelectorAll('.needs-validation') // Loop over them and prevent submission 
-      
-      Array.prototype.slice.call(forms) .forEach(function (form) {
-      form.addEventListener('submit', function (event) { 
-        if (!form.checkValidity()) { event.preventDefault() event.stopPropagation() }
-        form.classList.add('was-validated') }, false) 
-        }) 
+      const container = document.querySelector('#scroll-container');
+      const ps = new PerfectScrollbar(container);
+
+      const textNumRestrained = document.querySelector('.replytextarea') (function () { 
+        'use strict' // Fetch all the forms we want to apply custom Bootstrap
+        validation styles to var forms = document.querySelectorAll('.needs-validation') // Loop over them and prevent submission 
+        Array.prototype.slice.call(forms).forEach(
+          function (form) { form.addEventListener(
+            'submit', 
+            function (event) { 
+              if (!form.checkValidity()) { 
+                event.preventDefault() 
+                event.stopPropagation() 
+              } 
+              form.classList.add('was-validated') 
+            }, 
+            false
+          )}
+        ) 
       })()
     </script>
   </body>
